@@ -129,6 +129,10 @@ impl<R> BoundaryReader<R> where R: Read {
 
             let buf_len = self.read_to_boundary()?.len();
 
+            if buf_len == 0 {
+                break
+            }
+
             debug!("Discarding {} bytes", buf_len);
 
             self.consume(buf_len);
